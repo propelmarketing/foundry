@@ -1,11 +1,10 @@
-<Server Name>
+Server Name
 ============
 
 ## Description
 
 ## Architecture
 ### Providers
-### DAO
 ### Database
 ### Middleware
 ### Server
@@ -17,7 +16,7 @@
   cd admin/
   yarn install
   cd ..
-  ./node_modules/.bin.lumber generate
+  ./node_modules/.bin/lumber generate
   ```
 
 - Running
