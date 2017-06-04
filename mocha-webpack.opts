@@ -1,0 +1,8 @@
+--colors true
+--recursive true
+--inline-diffs true
+--include babel-polyfill
+--require source-map-support/register
+--webpack-config config/webpack/webpack.test.js
+
+test/**/*.spec.js

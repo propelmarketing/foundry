@@ -1,0 +1,7 @@
+var path      = require('path');
+var root      = process.cwd();
+
+module.exports = {
+  'config': path.resolve(root, 'config/sequelize.json'),
+  'models-path': path.resolve(root, 'src/server/models' )
+};

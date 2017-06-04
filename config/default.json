@@ -1,0 +1,35 @@
+{
+  "loggers": [
+    {
+      "name": "root",
+      "level": "debug"
+    },
+    {
+      "name": "auth",
+      "level": "debug"
+    }
+  ],
+  "server": {
+    "assets": {
+      "cdn": "https://s3.amazonaws.com/",
+      "staticRoot": "th-static-cdn/"
+    },
+    "http": {
+      "backlog": 511,
+      "hostname": "localhost",
+      "port": 3000
+    },
+    "session": {
+      "cookie": {
+        "maxAge": 86400000
+      },
+      "resave": false,
+      "saveUninitialized": false,
+      "secret": ""
+    },
+    "store": {
+      "host": "127.0.0.1",
+      "port": "6380"
+    }
+  }
+}
