@@ -1,4 +1,4 @@
-<Server Name>
+Server Name
 ============
 
 ## Description
