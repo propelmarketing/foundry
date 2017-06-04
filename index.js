@@ -2,7 +2,7 @@
  * { item_description }
  */
 
-var Arbiter = require('./dist/index').default;
-var server = new Arbiter();
+var Server = require('./dist/index').default;
+var server = new Server();
 
 server.start();
