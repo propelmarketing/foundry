@@ -1,6 +1,6 @@
 // @flow
 
-import Logger from 'arbiter/utils/logger';
+import Logger from 'server/utils/logger';
 
 const logger = Logger.get('auth');
 

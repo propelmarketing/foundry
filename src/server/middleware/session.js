@@ -1,7 +1,7 @@
 // @flow
 
 import session from 'express-session';
-import AbstractMiddleware from 'arbiter/middleware';
+import AbstractMiddleware from 'server/middleware';
 
 /**
  *

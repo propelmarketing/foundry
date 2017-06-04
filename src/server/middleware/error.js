@@ -1,6 +1,6 @@
 // @flow
 
-import AbstractMiddleware from 'arbiter/middleware';
+import AbstractMiddleware from 'server/middleware';
 
 export default class ErrorMiddleware extends AbstractMiddleware {
   mount(app: Object): void {

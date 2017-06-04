@@ -1,7 +1,7 @@
 // @flow
 
 import express from 'express';
-import AbstractMiddleware from 'arbiter/middleware';
+import AbstractMiddleware from 'server/middleware';
 
 /**
  *

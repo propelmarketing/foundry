@@ -7,8 +7,7 @@
       "module-resolver",
       {
         "alias": {
-          "arbiter": "./src/arbiter",
-          "thrivehive": "./src/thrivehive",
+          "server": "./src/server",
           "static": "./static",
           "configuration": "./config",
           "test": "./test"
