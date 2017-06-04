@@ -4,7 +4,7 @@ const nodeExternals = require('webpack-node-externals');
 
 // This is not particularly robust...
 const root = process.cwd();
-const entry = 'src/server/index.js';
+const entry = 'src/server.js';
 
 module.exports = {
   target: 'node',
