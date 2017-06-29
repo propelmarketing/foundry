@@ -1,6 +1,43 @@
+general:
+  artifacts:
+    - ./coverage
+    - ./dist
 machine:
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
   node:
-    version: 7.10.0
+    version: 8.1.0
 dependencies:
+  override:
+    - yarn
+  cache_directories:
+    - ~/.cache/yarn
   pre:
-    - npm install
+    - yarn install
+test:
+  override:
+    - yarn test:coverage
+    - cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
+    - source ./scripts/selenium.sh
+deployment:
+  production:
+    tag: /v[0-9]+(\.[0-9]+)*/
+    commands:
+      - yarn build
+      - source ./scripts/ec2/deploy_prod.sh
+  qa:
+    branch: master
+    commands:
+      - yarn build
+      - source ./scripts/ec2/deploy_qa.sh
+    # Use custom script until CircleCi adds suport for multiple groups
+    # codedeploy:
+    #   arbiter:
+    #     application_root: ./
+    #     region: us-east-1
+    #     revision_location:
+    #       revision_type: S3
+    #       s3_location:
+    #         bucket: th-deployments
+    #         key_pattern: arbiter-{BRANCH}-{SHORT_COMMIT}
+    #     deployment_group: production

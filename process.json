@@ -1,0 +1,11 @@
+{
+  "apps": [{
+    "script": "index.js",
+    "name": "arbiter",
+    "instances": 1,
+    "exec_mode": "cluster",
+    "watch": false,
+    "autorestart": true,
+    "restart_delay": 2000
+  }]
+}

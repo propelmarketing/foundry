@@ -1,0 +1,21 @@
+<% if (flash) { %>
+  <% if (flash.error) { %>
+    <% for ( var i = 0; i < flash.error.length; i++ ) { %>
+      <div class="ui error message banner">
+        <%= flash.error[i] %>
+      </div>
+    <% } %>
+  <% } else if (flash.info) { %>
+    <% for ( var i = 0; i < flash.info.length; i++ ) { %>
+      <div class="ui info message banner">
+        <%= flash.info[i] %>
+      </div>
+    <% } %>
+  <% } else if (flash.success) { %>
+    <% for ( var i = 0; i < flash.success.length; i++ ) { %>
+      <div class="ui success message banner">
+        <%= flash.success[i] %>
+      </div>
+    <% } %>
+  <% } %>
+<% } %>

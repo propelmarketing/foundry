@@ -8,6 +8,7 @@
       {
         "alias": {
           "server": "./src/server",
+          "views": "./src/views",
           "static": "./static",
           "configuration": "./config",
           "test": "./test"
@@ -28,5 +29,10 @@
   "sourceMaps": true,
   "ignore": [
     "node_modules"
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": ["istanbul"]
+    }
+  }
 }

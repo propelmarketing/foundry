@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../../partials/head %>
+    <!-- TODO move to our LESS when finished -->
+    <style>
+      .ui.auth.button {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+        border: 0;
+        width: 250px;
+        text-align: left;
+      }
+      .ui.auth.button > .icon {
+        height: 1.125rem;
+        width: 1.125rem;
+        margin-right: 1.5rem !important;
+        opacity: 1;
+        vertical-align: middle;
+      }
+      .ui.auth.button > span {
+        font-size: 0.875rem;
+        vertical-align: middle;
+      }
+      .ui.twitter.auth.button > .icon {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login page">
+      <div class="ui centered grid">
+        <div class="row">
+          <div class="centered login wrapper column">
+            <div class="ui fluid grey border segment">
+              <div class="content login">
+                <div class="image login"></div>
+
+                <div class="ui grid padded" >
+                  <div class="fourteen wide center aligned centered column">
+                    <% if (flash) { %>
+                      <% if (flash.error) { %>
+                        <% for ( var i = 0; i < flash.error.length; i++ ) { %>
+                          <div class="ui error message banner">
+                            <%= flash.error[i] %>
+                          </div>
+                        <% } %>
+                      <% } else if (flash.info) { %>
+                        <% for ( var i = 0; i < flash.info.length; i++ ) { %>
+                          <div class="ui info message banner">
+                            <%= flash.info[i] %>
+                          </div>
+                        <% } %>
+                      <% } else if (flash.success) { %>
+                        <% for ( var i = 0; i < flash.success.length; i++ ) { %>
+                          <div class="ui success message banner">
+                            <%= flash.success[i] %>
+                          </div>
+                        <% } %>
+                      <% } %>
+                    <% } %>
+                  </div>
+                </div>
+
+                <form method="POST" class="ui two column login form" action="/auth/twitter/connect">
+                  <div class="username field">
+                    <label class="login label" for="username">Username</label>
+                    <input id="username" name="username" type="text" class="login username" >
+                  </div>
+                  <div class="password field">
+                    <label class="login label" for="password">Password</label>
+                    <input id="password" name="password" type="password" class="login password">
+                  </div>
+                  <div class="field login spacer">
+                    <a class="left floated" href="/auth/forgot-password">Forgot Password?</a>
+                  </div>
+                  <div class="fields">
+                    <div class="field">
+                      <a class="ui secondary icon button" href="/login">
+                        <i class="ui arrow left icon"></i>
+                        <span>Back</span>
+                      </a>
+                    </div>
+                    <div class="field">
+                      <button class="ui twitter auth icon button">
+                        <i class="twitter icon"></i>
+                        <span>Connect your Twitter Account</span>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% include ../../partials/footer %>
+    <script src="/static/scripts/loginValidation.js"></script>
+    <script src="/static/scripts/validateFormSubmission.js"></script>
+  </body>
+</html>

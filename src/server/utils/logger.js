@@ -1,7 +1,11 @@
 // @flow
 
-import config from 'config';
 import bunyan from 'bunyan';
+import config from 'config';
+import createCWStream from 'bunyan-cloudwatch';
+import NewRelicStream from 'bunyan-newrelic-stream';
+import process from 'process';
+import uuidv4 from 'uuid/v4';
 
 let instance: Object | null = null;
 
@@ -20,7 +24,6 @@ export default class Logger {
    */
   constructor(): Object {
     if (instance == null) {
-      this.loadStreams();
       this.init(config.get('loggers'));
       instance = this;
     }
@@ -29,14 +32,35 @@ export default class Logger {
 
   /**
    * [init description]
-   * @param  {[type]} loggersConfig [description]
+   * @param  {[type]} handlersConfig [description]
    * @return {[type]}        [description]
    */
   init(loggersConfig: Object): void {
-    loggersConfig.forEach((logger) => {
-      const name = logger.name.toLowerCase();
-      this.loggers[name] = bunyan.createLogger(logger);
+    let loggerConfig;
+    const handlersConfig = loggersConfig.get('handlers');
+    handlersConfig.forEach((obj) => {
+      loggerConfig = Object.assign({}, obj);
+      const name = loggerConfig.name.toLowerCase();
+      const stream = loggerConfig.stream;
+
+      delete loggerConfig.stream;
+      const logger: Object = bunyan.createLogger(loggerConfig);
+
+      this.loadStreams(logger, stream, loggersConfig.get('streams'));
+      this.loggers[name] = logger;
     });
+
+    // Enable forwarding logged errors to Newrelic Reporting if the server is in a production environment
+    if (process.env.NODE_ENV === 'production') {
+      bunyan.createLogger({
+        name: 'arbiter',
+        streams: [{
+          level: 'error',
+          type: 'raw',
+          stream: new NewRelicStream()
+        }]
+      });
+    }
   }
 
   /**
@@ -61,9 +85,20 @@ export default class Logger {
   /**
    *
    */
-  loadStreams(): void {
-    // Nothing here yet, but if we want to use custom streams,
-    // define them here and reference the custom stream name
-    // in the logger config
+  loadStreams(logger: Object, name: string, streamsConfig: Object): void {
+    let streamConfig;
+    switch (name) {
+      case 'cloudwatch':
+        streamConfig = Object.assign({}, streamsConfig.get('cloudwatch'));
+        streamConfig.logStreamName += `-${process.pid}-${uuidv4()}`;
+        logger.addStream({
+          name: 'cloudwatch',
+          type: 'raw',
+          stream: createCWStream(Object.assign({}, streamConfig))
+        });
+        break;
+      default:
+        break;
+    }
   }
 }

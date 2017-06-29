@@ -1,11 +1,12 @@
 // @flow
 
-const hoistModels = function (models: Object): Object {
-  const Sequelize = require('sequelize');
-  const env = process.env.NODE_ENV || 'development';
-  const config = require('../../../config/sequelize.json')[env];
+const hoistModels = function (data: Object): Object {
+  const models: Object = {};
+  const Sequelize: Function = require('sequelize');
+  const env: string = process.env.NODE_ENV || 'development';
+  const config: Object = require('../../../config/sequelize.json')[env];
 
-  let sequelize;
+  let sequelize: Object;
 
   if (config.use_env_variable) {
     sequelize = new Sequelize(process.env[config.use_env_variable]);
@@ -13,12 +14,26 @@ const hoistModels = function (models: Object): Object {
     sequelize = new Sequelize(config.database, config.username, config.password, config);
   }
 
-  for (const [name, model] of Object.entries(models)) {
-    models[name] = model(sequelize);
+  let name: string;
+  let model: Function;
+
+  for (name in data) {
+    if (Object.prototype.hasOwnProperty.call(data, name)) {
+      models[name] = data[name](sequelize);
+    }
+  }
+
+  for (name in models) {
+    if (Object.prototype.hasOwnProperty.call(models, name)) {
+      model = models[name];
+      if ('associate' in model) {
+        model.associate(models);
+      }
+    }
   }
 
   models.sequelize = sequelize;
   models.Sequelize = Sequelize;
   return models;
 };
-export { hoistModels };
+export default hoistModels;

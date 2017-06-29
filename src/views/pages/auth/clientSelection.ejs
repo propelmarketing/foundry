@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../../partials/head %>
+  </head>
+  <body>
+    <div class="login page">
+      <div class="ui centered grid">
+        <div class="row">
+          <div class="centered login wrapper column">
+            <div class="ui fluid grey border segment">
+              <div class="content login">
+                <section class="basic relaxed segment ui">
+                  <div class="login image"></div>
+                  <h4 class="left aligned header ui">
+                    Choose an application
+                  </h4>
+                </section>
+
+                <div class="middle aligned stackable padded relaxed grid ui">
+
+                  <% clients.forEach(function(client, i) { %>
+                    <div class="stretched half padding one column row">
+                      <div class="left aligned column">
+                        <a class="ui large no border transparent button" style="text-align: left;" href="<%= client.clientUrl %>">
+                          <i class="ui blue circular label">
+                            <%= client.linkText.charAt(0).toUpperCase() %>
+                          </i>
+                          <span style="padding-left: 0.5rem;">
+                            <%= client.linkText %>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  <% }) %>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% include ../../partials/footer %>
+  </body>
+</html>

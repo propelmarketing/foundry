@@ -4,7 +4,7 @@ const nodeExternals = require('webpack-node-externals');
 
 // This is not particularly robust...
 const root = process.cwd();
-const entry = 'src/server.js';
+const entry = 'src/arbiter.js';
 
 module.exports = {
   target: 'node',
@@ -22,6 +22,7 @@ module.exports = {
     alias: {
       configuration: path.join(root, 'config'),
       server: path.join(root, 'src/server'),
+      views: path.join(root, 'src/views'),
       static: path.join(root, 'static'),
       'pg-native': path.join(root, 'aliases/pg-native.js')
     },
@@ -31,7 +32,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.html$/,
+        test: /\.(html|ejs)$/,
         use: 'html-loader'
       },
       {
@@ -54,26 +55,29 @@ module.exports = {
         test: /\.json$/,
         loader: 'json-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.y(a)?ml$/,
+        loader: 'yml-loader',
+        exclude: /node_modules/
       }
     ],
     noParse: /\.min\.js/
   },
   externals: [nodeExternals()],
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"',
-        __CLIENT__: true,
-        __SERVER__: false,
-        __PRODUCTION__: true,
-        __DEV__: false
-      },
+    new webpack.EnvironmentPlugin({
+      DEBUG: false,
+      __CLIENT__: false,
+      __SERVER__: true,
+      __PRODUCTION__: false,
+      __DEV__: true
     })
   ],
   output: {
     chunkFilename: '[name].[id].js',
     filename: 'index.js',
-    library: 'Server',
+    library: 'Arbiter',
     libraryTarget: "commonjs-module",
     path: path.join(root, 'dist/')
   }

@@ -35,6 +35,7 @@
     "import/extensions": 0,
     "import/no-dynamic-require": 0,
     "import/no-extraneous-dependencies": 0,
+    "import/prefer-default-export": 0,
     "linebreak-style": 0,
     "max-len": [
       "error",
@@ -42,7 +43,10 @@
       2
     ],
     "no-multi-str": 0,
+    "no-param-reassign": [2, { "props": true, "ignorePropertyModificationsFor": ["request", "response"] }],
+    "no-plusplus": 0,
     "no-restricted-syntax": 0,
+    "no-underscore-dangle": [2, { "allow": ["__DEV__"] }],
     "prefer-arrow-callback": 0,
     "strict": 0
   },

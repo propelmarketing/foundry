@@ -1,35 +1,120 @@
 {
-  "loggers": [
-    {
-      "name": "root",
-      "level": "debug"
+  "auth": {
+    "facebook": {
+      "clientID": "141368329363545",
+      "clientSecret": "a9944d2837e490666942e65df3d6196b",
+      "callbackURL": "//127.0.0.1:3000/auth/facebook/callback"
     },
-    {
-      "name": "auth",
-      "level": "debug"
+    "google": {
+      "clientID": "1007318428893-f3ggme2a3topplaiil5t5ppk3gbqm1v1.apps.googleusercontent.com",
+      "clientSecret": "WdI7BNNtBtWyF5FT3xrq_ead",
+      "callbackURL": "//127.0.0.1:3000/auth/google/callback"
+    },
+    "twitter": {
+      "consumerKey": "",
+      "consumerSecret": "",
+      "callbackURL": "//127.0.0.1:3000/auth/twitter/callback"
     }
-  ],
+  },
+  "loggers": {
+    "handlers": [
+      {
+        "name": "root",
+        "level": "debug"
+      },
+      {
+        "name": "auth",
+        "level": "debug"
+      },
+      {
+        "name": "db",
+        "level": "debug"
+      },
+      {
+        "name": "sendgrid",
+        "level": "debug"
+      }
+    ],
+    "streams": {}
+  },
   "server": {
+    "backlog": 511,
+    "hostname": "localhost",
+    "port": 3000,
+    "secure": false,
     "assets": {
-      "cdn": "https://s3.amazonaws.com/",
-      "staticRoot": "th-static-cdn/"
+      "cdn": "//s3.amazonaws.com/th-static-cdn",
+      "staticRoot": "static",
+      "templateEngine": "ejs",
+      "views": "src/views"
     },
-    "http": {
-      "backlog": 511,
-      "hostname": "localhost",
-      "port": 3000
-    },
+    "allowedClientNames": [
+      "thrivehive",
+      "portal"
+    ],
+    "agencyBlacklist": [
+      "localhost",
+      "127.0.0.1"
+    ],
     "session": {
       "cookie": {
-        "maxAge": 86400000
+        "httpOnly": false,
+        "maxAge": 86400000,
+        "path": "/"
       },
+      "name": "thrivehive_dev_session",
       "resave": false,
-      "saveUninitialized": false,
-      "secret": ""
+      "sameSite": false,
+      "saveUninitialized": true,
+      "secret": "jnh9w4zzw_@d*a5btj8k&&9q+$*vyy2=8y1y$3-fxyf-ci5xcv"
     },
-    "store": {
-      "host": "127.0.0.1",
-      "port": "6380"
+    "ssl": {
+      "key": "",
+      "cert": "",
+      "passphrase": ""
+    },
+    "tracking": {
+      "portal":  {
+        "ga": ""
+      },
+      "thrivehive": {
+        "ga": "UA-24841458-2",
+        "mixpanel": "0093b3c1e20f74f142fd7445c049f5b3"
+      }
+    }
+  },
+  "sendgrid": {
+    "apiKey": "",
+    "defaultProtocol": "http",
+    "sendToDebugAddress": true,
+    "mailDebugAddress": "qa-emails@thrivehive.com"
+  },
+  "swagger": {
+    "fittingsDirs": [ "src/server/fittings", "node_modules" ],
+    "defaultPipe": null,
+    "swaggerControllerPipe": "swagger_controllers",
+    "bagpipes": {
+      "_router": {
+        "name": "swagger_router",
+        "mockMode": false,
+        "mockControllersDirs": [ "src/server/mocks" ],
+        "controllersDirs": [ "src/server/controllers" ]
+      },
+      "_swagger_validate": {
+        "name": "swagger_validator",
+        "validateResponse": true
+      },
+      "swagger_controllers": {
+        "onError": "json_error_handler",
+        "cors": true,
+        "swagger_security": true,
+        "_swagger_validate": true,
+        "express_compatibility": true,
+        "_router": true
+      },
+      "swagger_raw": {
+        "name": "swagger_raw"
+      }
     }
   }
 }

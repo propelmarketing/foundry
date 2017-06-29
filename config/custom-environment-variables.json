@@ -1,0 +1,46 @@
+{
+  "passport": {
+    "facebook": {
+      "clientID": "ARBITER_FACEBOOK_CLIENT_ID",
+      "clientSecret": "ARBITER_FACEBOOK_CLIENT_SECRET",
+      "callbackURL": "ARBITER_FACEBOOK_CALLBACK_URL"
+    },
+    "google": {
+      "clientID": "ARBITER_GOOGLE_CLIENT_ID",
+      "clientSecret": "ARBITER_GOOGLE_CLIENT_SECRET",
+      "callbackURL": "ARBITER_GOOGLE_CALLBACK_URL"
+    },
+    "twitter": {
+      "consumerKey": "ARBITER_TWITTER_CONSUMER_KEY",
+      "consumerSecret": "ARBITER_TWITTER_CONSUMER_SECRET",
+      "callbackURL": "ARBITER_TWITTER_CALLBACK_URL"
+    }
+  },
+  "server": {
+    "hostname": "ARBITER_HOSTNAME",
+    "port": "ARBITER_PORT",
+    "secure": "ARBITER_SECURE",
+    "assets": {
+      "cdn": "TH_CDN",
+      "staticRoot": "TH_CDN_STATIC_ROOT",
+      "templateEngine": "ARBITER_VIEW_ENGINE",
+      "views": "ARBITER_VIEWS"
+    },
+    "session": {
+      "cookie": {
+        "maxAge": "ARBITER_SESSION_MAX_AGE"
+      },
+      "name": "ARBITER_SESSION_NAME",
+      "secret": "ARBITER_SESSION_SECRET",
+      "store": {
+        "host": "ARBITER_SESSIONS_STORE_HOST",
+        "port": "ARBITER_SESSIONS_STORE_PORT"
+      }
+    },
+    "ssl": {
+      "key": "ARBITER_SSL_KEY",
+      "cert": "ARBITER_SSL_CERT",
+      "passphrase": "ARBITER_SSL_PASSPHRASE"
+    }
+  }
+}

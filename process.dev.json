@@ -1,0 +1,13 @@
+{
+  "apps": [{
+    "script": "index.js",
+    "name": "arbiter",
+    "instances": 1,
+    "exec_mode": "cluster",
+    "watch": ["index.js", "dist"],
+    "ignore_watch" : ["node_modules", "start"],
+    "env": {
+      "NODE_ENV": "development"
+    }
+  }]
+}
