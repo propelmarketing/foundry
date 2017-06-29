@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   version: "1.0.0"
-  title: Arbiter
+  title: Server
 # during dev, should point to your local machine
 host: localhost:3000
 # basePath prefixes all resource paths

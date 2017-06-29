@@ -1,6 +1,6 @@
-Arbiter
+Server
 ============
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f056b46535d441d18d9d7a78916f4f86)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=propelmarketing/server&amp;utm_campaign=Badge_Grade) [![CircleCI](https://circleci.com/gh/propelmarketing/arbiter.svg?style=svg&circle-token=16667f90ebd396fea6203aa9876f73592bfa668c)](https://circleci.com/gh/propelmarketing/arbiter)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f056b46535d441d18d9d7a78916f4f86)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=propelmarketing/server&amp;utm_campaign=Badge_Grade) [![CircleCI](https://circleci.com/gh/propelmarketing/server.svg?style=svg&circle-token=16667f90ebd396fea6203aa9876f73592bfa668c)](https://circleci.com/gh/propelmarketing/server)
 
 ## Description
 
@@ -58,7 +58,7 @@ scheme of the external provider to an internal OAuth2 token.
 
 ## Deployment
 
-<b>IMPORTANT:</b> Arbiter <em>requires</em> the use of yarnpkg (https://yarnpkg.com/lang/en/docs/install/)
+<b>IMPORTANT:</b> Server <em>requires</em> the use of yarnpkg (https://yarnpkg.com/lang/en/docs/install/)
 
 ### PM2 Deployment Server Configuration
 
@@ -67,7 +67,7 @@ For clean target environments:
   ```
   yarn global add pm2
   ```
-- Must be able to clone from the Arbiter github repo
+- Must be able to clone from the Server github repo
 - A ssh key has been generated specifically for deployment access, the keys has been uploaded to CircleCI, and the public key has been added to the target server's ~/.ssh/authorized_keys
 - From a local machine, run the following commands to initialize the pm2 environment on the target server:
   ```
@@ -78,7 +78,7 @@ For clean target environments:
 ### Admin Console
 - Installation
   The Forest Admin Lumber microservice points to the database specified in the .env file. To install, first copy
-  the .env template, update the values to point to the proper Arbiter database, then run:
+  the .env template, update the values to point to the proper Server database, then run:
   ```
   cd admin/
   yarn install

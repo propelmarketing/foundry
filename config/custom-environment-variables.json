@@ -1,46 +1,46 @@
 {
   "passport": {
     "facebook": {
-      "clientID": "ARBITER_FACEBOOK_CLIENT_ID",
-      "clientSecret": "ARBITER_FACEBOOK_CLIENT_SECRET",
-      "callbackURL": "ARBITER_FACEBOOK_CALLBACK_URL"
+      "clientID": "SERVER_FACEBOOK_CLIENT_ID",
+      "clientSecret": "SERVER_FACEBOOK_CLIENT_SECRET",
+      "callbackURL": "SERVER_FACEBOOK_CALLBACK_URL"
     },
     "google": {
-      "clientID": "ARBITER_GOOGLE_CLIENT_ID",
-      "clientSecret": "ARBITER_GOOGLE_CLIENT_SECRET",
-      "callbackURL": "ARBITER_GOOGLE_CALLBACK_URL"
+      "clientID": "SERVER_GOOGLE_CLIENT_ID",
+      "clientSecret": "SERVER_GOOGLE_CLIENT_SECRET",
+      "callbackURL": "SERVER_GOOGLE_CALLBACK_URL"
     },
     "twitter": {
-      "consumerKey": "ARBITER_TWITTER_CONSUMER_KEY",
-      "consumerSecret": "ARBITER_TWITTER_CONSUMER_SECRET",
-      "callbackURL": "ARBITER_TWITTER_CALLBACK_URL"
+      "consumerKey": "SERVER_TWITTER_CONSUMER_KEY",
+      "consumerSecret": "SERVER_TWITTER_CONSUMER_SECRET",
+      "callbackURL": "SERVER_TWITTER_CALLBACK_URL"
     }
   },
   "server": {
-    "hostname": "ARBITER_HOSTNAME",
-    "port": "ARBITER_PORT",
-    "secure": "ARBITER_SECURE",
+    "hostname": "SERVER_HOSTNAME",
+    "port": "SERVER_PORT",
+    "secure": "SERVER_SECURE",
     "assets": {
       "cdn": "TH_CDN",
       "staticRoot": "TH_CDN_STATIC_ROOT",
-      "templateEngine": "ARBITER_VIEW_ENGINE",
-      "views": "ARBITER_VIEWS"
+      "templateEngine": "SERVER_VIEW_ENGINE",
+      "views": "SERVER_VIEWS"
     },
     "session": {
       "cookie": {
-        "maxAge": "ARBITER_SESSION_MAX_AGE"
+        "maxAge": "SERVER_SESSION_MAX_AGE"
       },
-      "name": "ARBITER_SESSION_NAME",
-      "secret": "ARBITER_SESSION_SECRET",
+      "name": "SERVER_SESSION_NAME",
+      "secret": "SERVER_SESSION_SECRET",
       "store": {
-        "host": "ARBITER_SESSIONS_STORE_HOST",
-        "port": "ARBITER_SESSIONS_STORE_PORT"
+        "host": "SERVER_SESSIONS_STORE_HOST",
+        "port": "SERVER_SESSIONS_STORE_PORT"
       }
     },
     "ssl": {
-      "key": "ARBITER_SSL_KEY",
-      "cert": "ARBITER_SSL_CERT",
-      "passphrase": "ARBITER_SSL_PASSPHRASE"
+      "key": "SERVER_SSL_KEY",
+      "cert": "SERVER_SSL_CERT",
+      "passphrase": "SERVER_SSL_PASSPHRASE"
     }
   }
 }

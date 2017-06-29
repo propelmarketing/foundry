@@ -32,8 +32,8 @@
     ],
     "streams": {
       "cloudwatch": {
-        "logGroupName": "arbiter-qa",
-        "logStreamName": "arbiter",
+        "logGroupName": "server-qa",
+        "logStreamName": "server",
         "cloudWatchLogsOptions": {
           "sslEnabled": true,
           "region": "us-east-1"
