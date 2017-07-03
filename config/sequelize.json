@@ -1,0 +1,52 @@
+{
+  "development": {
+    "username": "arbiter",
+    "password": "nAI7lc4Ch0fh",
+    "database": "arbiter",
+    "host": "arbiter-dev.cirzopsllrnk.us-east-1.rds.amazonaws.com",
+    "dialect": "postgres",
+    "port": "5432",
+    "native": false,
+    "omitNull": true
+  },
+  "test": {
+    "username": "arbiter",
+    "password": "nAI7lc4Ch0fh",
+    "database": "arbiter",
+    "host": "arbiter-dev.cirzopsllrnk.us-east-1.rds.amazonaws.com",
+    "dialect": "postgres",
+    "port": "5432",
+    "native": false,
+    "omitNull": true
+  },
+  "production": {
+    "username": "arbiter",
+    "password": "B0tZtEIy2J82Lo2MUNCp5xxpONy7qNDt",
+    "database": "arbiter",
+    "host": "arbiter.cirzopsllrnk.us-east-1.rds.amazonaws.com",
+    "dialect": "postgres",
+    "port": "5432",
+    "native": false,
+    "omitNull": true
+  },
+  "staging": {
+    "username": "arbiter",
+    "password": "nAI7lc4Ch0fh",
+    "database": "arbiter",
+    "host": "arbiter-dev.cirzopsllrnk.us-east-1.rds.amazonaws.com",
+    "dialect": "postgres",
+    "port": "5432",
+    "native": false,
+    "omitNull": true
+  },
+  "qa": {
+    "username": "arbiter",
+    "password": "nAI7lc4Ch0fh",
+    "database": "arbiter",
+    "host": "arbiter-dev.cirzopsllrnk.us-east-1.rds.amazonaws.com",
+    "dialect": "postgres",
+    "port": "5432",
+    "native": false,
+    "omitNull": true
+  }
+}

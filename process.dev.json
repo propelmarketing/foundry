@@ -1,7 +1,7 @@
 {
   "apps": [{
     "script": "index.js",
-    "name": "<server>",
+    "name": "arbiter",
     "instances": 1,
     "exec_mode": "cluster",
     "watch": ["index.js", "dist"],

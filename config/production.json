@@ -1,4 +1,12 @@
 {
+  "auth": {
+    "facebook": {
+      "callbackURL": "//login.thrivehive.com/auth/facebook/callback"
+    },
+    "google": {
+      "callbackURL": "//login.thrivehive.com/auth/google/callback"
+    }
+  },
   "loggers": {
     "handlers": [
       {
@@ -24,8 +32,8 @@
     ],
     "streams": {
       "cloudwatch": {
-        "logGroupName": "server",
-        "logStreamName": "server",
+        "logGroupName": "arbiter",
+        "logStreamName": "arbiter",
         "cloudWatchLogsOptions": {
           "sslEnabled": true,
           "region": "us-east-1"
@@ -35,6 +43,12 @@
   },
   "server": {
     "hostname": "0.0.0.0",
+    "session": {
+      "cookie": {
+        "domain": ".thrivehive.com"
+      },
+      "name": "thrivehive_session"
+    }
   },
   "sendgrid": {
     "sendToDebugAddress": false

@@ -11,13 +11,17 @@ import swaggerMiddleware from 'swagger-express-middleware';
 
 import swaggerApi from 'configuration/swagger.yml';
 
+import AgencyMiddleware from 'server/middleware/agency';
+import AuthMiddleware from 'server/middleware/auth';
 import ErrorMiddleware from 'server/middleware/error';
 import LoggingMiddleware from 'server/middleware/logging';
+import SessionMiddleware from 'server/middleware/session';
 import StaticMiddleware from 'server/middleware/static';
 import TrackingMiddleware from 'server/middleware/tracking';
 // END CUSTOM TH IMPORTS
 
 import Logger from 'server/utils/logger';
+import router from 'server/router';
 
 // Enable Newrelic Reporting if the server is in a production environment
 let newrelic: Object | null = null;
@@ -32,7 +36,7 @@ process.env.ALLOW_CONFIG_MUTATIONS = true;
  * [app description]
  * @type {[type]}
  */
-export default class Server {
+export default class Arbiter {
 
   app: Function;
   config: Object;
@@ -93,7 +97,7 @@ export default class Server {
    * @type {IndexController}
    */
   controllers(): void {
-    // this.app.use(router);
+    this.app.use(router);
   }
 
   /**
@@ -149,6 +153,14 @@ export default class Server {
     const loggingMiddleware = new LoggingMiddleware(this.config, this.logger);
     loggingMiddleware.mount(this.app);
 
+    // Configure Request logging
+    const agencyMiddleware = new AgencyMiddleware(this.config, this.logger);
+    agencyMiddleware.mount(this.app);
+
+    // Configure the Express Session middleware
+    const sessionMiddleware = new SessionMiddleware(this.config.get('session'), this.logger);
+    sessionMiddleware.mount(this.app);
+
     // Configure the Express Static middleware
     const staticMiddleware = new StaticMiddleware(this.config, this.logger);
     staticMiddleware.mount(this.app);
@@ -156,6 +168,9 @@ export default class Server {
     // BEGIN CUSTOM TH MIDDLEWARE
     const trackingMiddleware = new TrackingMiddleware(this.config, this.logger, newrelic);
     trackingMiddleware.mount(this.app);
+
+    const authMiddleware = new AuthMiddleware(this.config, this.logger);
+    authMiddleware.mount(this.app);
     // END CUSTOM TH MIDDLEWARE
   }
 

@@ -4,7 +4,7 @@ const nodeExternals = require('webpack-node-externals');
 
 // This is not particularly robust...
 const root = process.cwd();
-const entry = 'src/server.js';
+const entry = 'src/arbiter.js';
 
 module.exports = {
   target: 'node',
@@ -77,7 +77,7 @@ module.exports = {
   output: {
     chunkFilename: '[name].[id].js',
     filename: 'index.js',
-    library: 'Server',
+    library: 'Arbiter',
     libraryTarget: "commonjs-module",
     path: path.join(root, 'dist/')
   }
