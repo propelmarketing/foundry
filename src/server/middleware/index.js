@@ -75,6 +75,7 @@ const validateApiAccess = async function(request: Object, response: Object, next
 }
 export { validateApiAccess };
 
+
 /**
  * [description]
  * @param  {[type]} request  [description]
