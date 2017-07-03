@@ -11,6 +11,14 @@ import swaggerMiddleware from 'swagger-express-middleware';
 
 import swaggerApi from 'configuration/swagger.yml';
 
+import ErrorMiddleware from 'server/middleware/error';
+import LoggingMiddleware from 'server/middleware/logging';
+import StaticMiddleware from 'server/middleware/static';
+import TrackingMiddleware from 'server/middleware/tracking';
+// END CUSTOM TH IMPORTS
+
+import Logger from 'server/utils/logger';
+
 // Enable Newrelic Reporting if the server is in a production environment
 let newrelic: Object | null = null;
 if (process.env.NODE_ENV === 'production') {
@@ -69,6 +77,8 @@ export default class Server {
    * @type {[type]}
    */
   configure(): void {
+    this.logger = Logger.get('root');
+
     // Catches ctrl+c event
     this.boundSigIntHandler = ::this.sigIntHandler;
     process.on('SIGINT', this.boundSigIntHandler);
@@ -83,6 +93,7 @@ export default class Server {
    * @type {IndexController}
    */
   controllers(): void {
+    // this.app.use(router);
   }
 
   /**
@@ -133,6 +144,19 @@ export default class Server {
     }));
     this.app.use(bodyParser.json());
     this.app.use(flash({ unsafe: true }));
+
+    // Configure Request logging
+    const loggingMiddleware = new LoggingMiddleware(this.config, this.logger);
+    loggingMiddleware.mount(this.app);
+
+    // Configure the Express Static middleware
+    const staticMiddleware = new StaticMiddleware(this.config, this.logger);
+    staticMiddleware.mount(this.app);
+
+    // BEGIN CUSTOM TH MIDDLEWARE
+    const trackingMiddleware = new TrackingMiddleware(this.config, this.logger, newrelic);
+    trackingMiddleware.mount(this.app);
+    // END CUSTOM TH MIDDLEWARE
   }
 
   /**
@@ -142,6 +166,8 @@ export default class Server {
    */
   errorMiddleware(): void {
     // Configure the request error handling
+    const errorMiddleware = new ErrorMiddleware(this.config, this.logger);
+    errorMiddleware.mount(this.app);
   }
 
   /**

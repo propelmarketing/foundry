@@ -35,12 +35,4 @@ if [ ! -f "$CONFIG_FILE" ]; then
   echo "Failed to download the correct config ($CONFIG_FILE) file!" && exit 1
 fi
 
-# Load the prod-level sequelize config if in prod
-# if [ "$NODE_ENV" = "production" ]; then
-#   CONFIG_FILE="sequelize.json"
-#   aws s3 cp "$S3_URI/$CONFIG_FILE" "$CONFIG_FILE"
-#   if [ ! -f "$CONFIG_FILE" ]; then
-#     echo "Failed to download the correct config ($CONFIG_FILE) file!" && exit 1
-#   fi
-# fi
 cd ~
