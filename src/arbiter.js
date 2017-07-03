@@ -14,7 +14,6 @@ import swaggerApi from 'configuration/swagger.yml';
 import AgencyMiddleware from 'server/middleware/agency';
 import ErrorMiddleware from 'server/middleware/error';
 import LoggingMiddleware from 'server/middleware/logging';
-import SessionMiddleware from 'server/middleware/session';
 import StaticMiddleware from 'server/middleware/static';
 import TrackingMiddleware from 'server/middleware/tracking';
 // END CUSTOM TH IMPORTS
@@ -155,10 +154,6 @@ export default class Arbiter {
     // Configure Request logging
     const agencyMiddleware = new AgencyMiddleware(this.config, this.logger);
     agencyMiddleware.mount(this.app);
-
-    // Configure the Express Session middleware
-    const sessionMiddleware = new SessionMiddleware(this.config.get('session'), this.logger);
-    sessionMiddleware.mount(this.app);
 
     // Configure the Express Static middleware
     const staticMiddleware = new StaticMiddleware(this.config, this.logger);
