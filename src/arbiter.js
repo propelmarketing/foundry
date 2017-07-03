@@ -12,7 +12,6 @@ import swaggerMiddleware from 'swagger-express-middleware';
 import swaggerApi from 'configuration/swagger.yml';
 
 import AgencyMiddleware from 'server/middleware/agency';
-import AuthMiddleware from 'server/middleware/auth';
 import ErrorMiddleware from 'server/middleware/error';
 import LoggingMiddleware from 'server/middleware/logging';
 import SessionMiddleware from 'server/middleware/session';
@@ -168,9 +167,6 @@ export default class Arbiter {
     // BEGIN CUSTOM TH MIDDLEWARE
     const trackingMiddleware = new TrackingMiddleware(this.config, this.logger, newrelic);
     trackingMiddleware.mount(this.app);
-
-    const authMiddleware = new AuthMiddleware(this.config, this.logger);
-    authMiddleware.mount(this.app);
     // END CUSTOM TH MIDDLEWARE
   }
 
