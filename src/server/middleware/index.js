@@ -4,7 +4,6 @@ import config from 'config';
 import error from 'server/utils/error';
 import Exception from 'server/exception';
 import Logger from 'server/utils/logger';
-import models from 'server/models';
 import { NOT_YET_IMPLEMENTED, NOT_ALLOWED, NOT_AUTHORIZED } from 'server/exception/codes';
 
 const LOGGER = Logger.get('auth');
