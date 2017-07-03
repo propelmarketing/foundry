@@ -1,12 +1,4 @@
 {
-  "auth": {
-    "facebook": {
-      "callbackURL": "https://qa-login.thrivehive.com/auth/facebook/callback"
-    },
-    "google": {
-      "callbackURL": "https://qa-login.thrivehive.com/auth/google/callback"
-    }
-  },
   "loggers": {
     "handlers": [
       {
@@ -42,12 +34,6 @@
     }
   },
   "server": {
-    "hostname": "0.0.0.0",
-    "session": {
-      "cookie": {
-        "domain": ".thrivehive.com"
-      },
-      "name": "thrivehive_qa_session"
-    }
+    "hostname": "0.0.0.0"
   }
 }

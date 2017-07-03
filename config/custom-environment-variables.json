@@ -1,21 +1,4 @@
 {
-  "passport": {
-    "facebook": {
-      "clientID": "SERVER_FACEBOOK_CLIENT_ID",
-      "clientSecret": "SERVER_FACEBOOK_CLIENT_SECRET",
-      "callbackURL": "SERVER_FACEBOOK_CALLBACK_URL"
-    },
-    "google": {
-      "clientID": "SERVER_GOOGLE_CLIENT_ID",
-      "clientSecret": "SERVER_GOOGLE_CLIENT_SECRET",
-      "callbackURL": "SERVER_GOOGLE_CALLBACK_URL"
-    },
-    "twitter": {
-      "consumerKey": "SERVER_TWITTER_CONSUMER_KEY",
-      "consumerSecret": "SERVER_TWITTER_CONSUMER_SECRET",
-      "callbackURL": "SERVER_TWITTER_CALLBACK_URL"
-    }
-  },
   "server": {
     "hostname": "SERVER_HOSTNAME",
     "port": "SERVER_PORT",
@@ -25,17 +8,6 @@
       "staticRoot": "TH_CDN_STATIC_ROOT",
       "templateEngine": "SERVER_VIEW_ENGINE",
       "views": "SERVER_VIEWS"
-    },
-    "session": {
-      "cookie": {
-        "maxAge": "SERVER_SESSION_MAX_AGE"
-      },
-      "name": "SERVER_SESSION_NAME",
-      "secret": "SERVER_SESSION_SECRET",
-      "store": {
-        "host": "SERVER_SESSIONS_STORE_HOST",
-        "port": "SERVER_SESSIONS_STORE_PORT"
-      }
     },
     "ssl": {
       "key": "SERVER_SSL_KEY",

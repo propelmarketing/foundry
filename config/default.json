@@ -1,21 +1,4 @@
 {
-  "auth": {
-    "facebook": {
-      "clientID": "141368329363545",
-      "clientSecret": "a9944d2837e490666942e65df3d6196b",
-      "callbackURL": "//127.0.0.1:3000/auth/facebook/callback"
-    },
-    "google": {
-      "clientID": "1007318428893-f3ggme2a3topplaiil5t5ppk3gbqm1v1.apps.googleusercontent.com",
-      "clientSecret": "WdI7BNNtBtWyF5FT3xrq_ead",
-      "callbackURL": "//127.0.0.1:3000/auth/google/callback"
-    },
-    "twitter": {
-      "consumerKey": "",
-      "consumerSecret": "",
-      "callbackURL": "//127.0.0.1:3000/auth/twitter/callback"
-    }
-  },
   "loggers": {
     "handlers": [
       {
@@ -48,26 +31,10 @@
       "templateEngine": "ejs",
       "views": "src/views"
     },
-    "allowedClientNames": [
-      "thrivehive",
-      "portal"
-    ],
     "agencyBlacklist": [
       "localhost",
       "127.0.0.1"
     ],
-    "session": {
-      "cookie": {
-        "httpOnly": false,
-        "maxAge": 86400000,
-        "path": "/"
-      },
-      "name": "thrivehive_dev_session",
-      "resave": false,
-      "sameSite": false,
-      "saveUninitialized": true,
-      "secret": "jnh9w4zzw_@d*a5btj8k&&9q+$*vyy2=8y1y$3-fxyf-ci5xcv"
-    },
     "ssl": {
       "key": "",
       "cert": "",

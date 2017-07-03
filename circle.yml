@@ -25,19 +25,3 @@ deployment:
     commands:
       - yarn build
       - source ./scripts/ec2/deploy_prod.sh
-  qa:
-    branch: master
-    commands:
-      - yarn build
-      - source ./scripts/ec2/deploy_qa.sh
-    # Use custom script until CircleCi adds suport for multiple groups
-    # codedeploy:
-    #   server:
-    #     application_root: ./
-    #     region: us-east-1
-    #     revision_location:
-    #       revision_type: S3
-    #       s3_location:
-    #         bucket: th-deployments
-    #         key_pattern: server-{BRANCH}-{SHORT_COMMIT}
-    #     deployment_group: production

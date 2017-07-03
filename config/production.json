@@ -1,12 +1,4 @@
 {
-  "auth": {
-    "facebook": {
-      "callbackURL": "//login.thrivehive.com/auth/facebook/callback"
-    },
-    "google": {
-      "callbackURL": "//login.thrivehive.com/auth/google/callback"
-    }
-  },
   "loggers": {
     "handlers": [
       {
@@ -43,12 +35,6 @@
   },
   "server": {
     "hostname": "0.0.0.0",
-    "session": {
-      "cookie": {
-        "domain": ".thrivehive.com"
-      },
-      "name": "thrivehive_session"
-    }
   },
   "sendgrid": {
     "sendToDebugAddress": false
