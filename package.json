@@ -55,6 +55,7 @@
     "sendgrid": "^5.1.1",
     "sequelize": "4.0.0-2",
     "sequelize-cli": "^2.7.0",
+    "swagger": "^0.7.5",
     "swagger-express-middleware": "^1.0.0-alpha.12",
     "uuid": "^3.1.0",
     "validator": "^7.0.0"
@@ -99,7 +100,6 @@
     "source-map-support": "^0.4.15",
     "style-loader": "^0.13.1",
     "supertest": "^3.0.0",
-    "swagger": "^0.7.5",
     "webpack": "^2.5.1",
     "webpack-node-externals": "^1.6.0",
     "yml-loader": "^2.0.1"
