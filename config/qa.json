@@ -1,12 +1,4 @@
 {
-  "auth": {
-    "facebook": {
-      "callbackURL": "https://qa-login.thrivehive.com/auth/facebook/callback"
-    },
-    "google": {
-      "callbackURL": "https://qa-login.thrivehive.com/auth/google/callback"
-    }
-  },
   "loggers": {
     "handlers": [
       {
