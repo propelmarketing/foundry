@@ -34,12 +34,6 @@
     }
   },
   "server": {
-    "hostname": "0.0.0.0",
-    "session": {
-      "cookie": {
-        "domain": ".thrivehive.com"
-      },
-      "name": "thrivehive_qa_session"
-    }
+    "hostname": "0.0.0.0"
   }
 }

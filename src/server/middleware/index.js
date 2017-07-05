@@ -7,7 +7,6 @@ import Logger from 'server/utils/logger';
 import { NOT_YET_IMPLEMENTED, NOT_ALLOWED, NOT_AUTHORIZED } from 'server/exception/codes';
 
 const LOGGER = Logger.get('auth');
-const sessionConfig = config.get('server').get('session');
 
 /**
  *
