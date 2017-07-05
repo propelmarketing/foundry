@@ -3,53 +3,6 @@ Arbiter
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f056b46535d441d18d9d7a78916f4f86)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=propelmarketing/server&amp;utm_campaign=Badge_Grade) [![CircleCI](https://circleci.com/gh/propelmarketing/arbiter.svg?style=svg&circle-token=16667f90ebd396fea6203aa9876f73592bfa668c)](https://circleci.com/gh/propelmarketing/arbiter)
 
 ## Description
-
-Login with facebook:
-  - TODO
-
-Login with google:
-  In order to use Google's OpenID to log into the CAS, a User must first login using their username and
-  password, then link their account with a Google Account. To link their account, a User must hit the
-  linking endpoint with their sessions active. This associates the User with the Google Account they
-  selected on Google's OpenID Authorization screen. Once linked, a User will be able to select their
-  linked Google Account to login rather than providing a username/password pair.
-
-We have multiple types of users:
-  - Customers (User)
-  - Staff (User)
-  - Agencies
-
-  - Customers and Agency information should be contained inside one database
-  - Staff information should be contained inside a AD server
-
-When a user attempts to login to one of the Thrivehive apps using a local strategy,
-the CAS shall verify the Application CLIENT_ID to verify that
-the app is a registered or authorized application. If so, then:
-  - If the client is requesting a refresh token, the CAS will engage in the standard OAuth token refresh flow.
-  - The CAS will examine the Cookie Jar for an existing auth token.
-    - If no such token exists, then the CAS will proceed with the
-      OAuth Client Password auth scheme with a pre-defined expiration.
-      The CAS will store this token for further SSO capabilities.
-    - Otherwise, the CAS will verify token validity and either
-      allow or deny access.
-When a user attempts to login to one of the Thrivehive apps using either Facebook or Google,
-the CAS shall forward the auth request to Facebook or Google.
-If access if permitted by these external providers, then the CAS
-will utilize the provided auth information to find a user in the
-corresponding profile databases. If no user exists, then a profile
-is created. The CAS will then store the external provider auth
-token to use for further SSO capabilities. If no expiration is
-attached to the external provider auth token, the CAS will set
-one internally.
-
-The CAS has the following responsibilities:
-  - To use the OAuth2 specification to authorize users to access both internal and external Thrivehive applications
-  - To provide an authentication endpoint for Thrivehive customers, reps, and staff members
-  - To forward authentication requests to external providers to obtain valid OAuth2 tokens
-
-If an external provider does not use OAuth2, then the CAS is responsible for converting and mapping  the authorization
-scheme of the external provider to an internal OAuth2 token.
-
 ## Architecture
 ### Providers
 ### Database
