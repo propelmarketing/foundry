@@ -53,7 +53,7 @@ export default class Logger {
     // Enable forwarding logged errors to Newrelic Reporting if the server is in a production environment
     if (process.env.NODE_ENV === 'production') {
       bunyan.createLogger({
-        name: 'arbiter',
+        name: '<server>',
         streams: [{
           level: 'error',
           type: 'raw',

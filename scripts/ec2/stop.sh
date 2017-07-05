@@ -3,6 +3,6 @@
 
 source ~/.bash_profile
 
-cd ~/arbiter
-pm2 stop arbiter
+cd ~/<server>
+pm2 stop <server>
 pm2 kill

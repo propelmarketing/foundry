@@ -17,19 +17,19 @@ if [ ! -z "$DEPLOYMENT_GROUP_NAME" ]; then
   fi
 fi
 
-cd ~/arbiter
+cd ~/<server>
 yarn install --production
 
-# add arbiter to startup
+# add <server> to startup
 hasRc=`grep "su -l $USER" /etc/rc.d/rc.local | cat`
 if [ -z "$hasRc" ]; then
-  sudo sh -c "echo 'su -l $USER -c \"cd ~/arbiter/scripts/ec2;sh ./start.sh\"' >> /etc/rc.d/rc.local"
+  sudo sh -c "echo 'su -l $USER -c \"cd ~/<server>/scripts/ec2;sh ./start.sh\"' >> /etc/rc.d/rc.local"
 fi
 
 # Load the production config
-cd ~/arbiter/config
+cd ~/<server>/config
 CONFIG_FILE="local.json"
-S3_URI="s3://th-config/arbiter/$DEPLOYMENT_GROUP_NAME"
+S3_URI="s3://th-config/<server>/$DEPLOYMENT_GROUP_NAME"
 aws s3 cp "$S3_URI/$CONFIG_FILE" "$CONFIG_FILE"
 if [ ! -f "$CONFIG_FILE" ]; then
   echo "Failed to download the correct config ($CONFIG_FILE) file!" && exit 1
