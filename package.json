@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "<server>",
   "version": "1.0.0",
   "description": "ThriveHive Microservice",
   "main": "index.js",
@@ -16,7 +16,7 @@
     "test:coverage": "yarn cross-env NODE_ENV=test yarn nyc yarn mocha-webpack",
     "test:windows": "yarn cross-env NODE_ENV=test yarn mocha-webpack",
     "watch": "concurrently --kill-other --raw \"yarn build-watch\" \"pm2 startOrRestart process.dev.json\"",
-    "watch:log": "concurrently --kill-other --raw \"yarn build-watch\" \"pm2 logs server --lines 0 startOrRestart process.dev.json\"",
+    "watch:log": "concurrently --kill-other --raw \"yarn build-watch\" \"pm2 logs <server> --lines 0 startOrRestart process.dev.json\"",
     "build:watch": "yarn build && yarn watch"
   },
   "repository": {
