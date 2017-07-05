@@ -1,9 +1,6 @@
 // @flow
 
 import express from 'express';
-import {
-  validateUserSession
-} from 'server/middleware';
 
 /**
  * Controllers
