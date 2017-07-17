@@ -35,8 +35,5 @@
   },
   "server": {
     "hostname": "0.0.0.0"
-  },
-  "sendgrid": {
-    "sendToDebugAddress": false
   }
 }
