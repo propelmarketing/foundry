@@ -11,17 +11,17 @@ import swaggerMiddleware from 'swagger-express-middleware';
 
 import swaggerApi from 'configuration/swagger.yml';
 
-import AgencyMiddleware from '<server>/middleware/agency';
-import ErrorMiddleware from '<server>/middleware/error';
-import LoggingMiddleware from '<server>/middleware/logging';
-import StaticMiddleware from '<server>/middleware/static';
-import TrackingMiddleware from '<server>/middleware/tracking';
+import AgencyMiddleware from 'server/middleware/agency';
+import ErrorMiddleware from 'server/middleware/error';
+import LoggingMiddleware from 'server/middleware/logging';
+import StaticMiddleware from 'server/middleware/static';
+import TrackingMiddleware from 'server/middleware/tracking';
 // END CUSTOM TH IMPORTS
 
-import Logger from '<server>/utils/logger';
-import router from '<server>/router';
+import Logger from 'server/utils/logger';
+import router from 'server/router';
 
-// Enable Newrelic Reporting if the <server> is in a production environment
+// Enable Newrelic Reporting if the server is in a production environment
 let newrelic: Object | null = null;
 if (process.env.NODE_ENV === 'production') {
   newrelic = require('newrelic');
@@ -34,7 +34,7 @@ process.env.ALLOW_CONFIG_MUTATIONS = true;
  * [app description]
  * @type {[type]}
  */
-export default class <server> {
+export default class Server {
 
   app: Function;
   config: Object;
@@ -46,12 +46,12 @@ export default class <server> {
    * @return {[type]}      [description]
    */
   constructor(): void {
-    this.config = config.get('<server>');
+    this.config = config.get('server');
 
     try {
       this.configure();
 
-      // Initialize the express <server>
+      // Initialize the express server
       this.app = express();
 
       // Mount middleware
@@ -182,14 +182,14 @@ export default class <server> {
    */
   start(callback: Function | null = null): void {
     if (!this.app) {
-      throw new Error('Cannot start <server>: the express instance is not defined');
+      throw new Error('Cannot start server: the express instance is not defined');
     }
 
     const cb = () => {
       if (callback != null) {
         callback();
       }
-      const message = `<server> listening at ${this.config.get('hostname')}:${this.config.get('port')}...`;
+      const message = `Server listening at ${this.config.get('hostname')}:${this.config.get('port')}...`;
       this.logger.info(message);
     };
 
@@ -222,7 +222,7 @@ export default class <server> {
       key: fs.readFileSync(sslConfig.get('key')),
       cert: fs.readFileSync(sslConfig.get('cert'))
     });
-    return https.create<server>(httpsConfig, this.app)
+    return https.createServer(httpsConfig, this.app)
       .listen(this.config.get('port'), this.config.get('hostname'), this.config.get('backlog'), callback);
   }
 
@@ -232,12 +232,12 @@ export default class <server> {
    * @return {[type]}            [description]
    */
   stop(callback: Function | null = null): void {
-    if (this.app && this.app.<server>) {
-      this.app.<server>.close(() => {
+    if (this.app && this.app.server) {
+      this.app.server.close(() => {
         if (callback != null && typeof callback === 'function') {
           callback();
         }
-        this.logger.info(`<server> (${this.config.hostname}:${this.config.port}) stopping...`);
+        this.logger.info(`Server (${this.config.hostname}:${this.config.port}) stopping...`);
       });
     }
     this.destroy();
