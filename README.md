@@ -1,6 +1,6 @@
 <server>
 ============
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f056b46535d441d18d9d7a78916f4f86)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=propelmarketing/server&amp;utm_campaign=Badge_Grade) [![CircleCI](https://circleci.com/gh/propelmarketing/<server>.svg?style=svg&circle-token=16667f90ebd396fea6203aa9876f73592bfa668c)](https://circleci.com/gh/propelmarketing/<server>)
+[![CircleCI](https://circleci.com/gh/propelmarketing/<server>.svg?style=svg&circle-token=16667f90ebd396fea6203aa9876f73592bfa668c)](https://circleci.com/gh/propelmarketing/<server>)
 
 ## Description
 ## Architecture
@@ -27,22 +27,6 @@ For clean target environments:
   ./node_modules/.bin/pm2 deploy <environment_key> setup
   ```
   Where <environment_key> is either production or qa, depending on the purpose of the server
-
-### Admin Console
-- Installation
-  The Forest Admin Lumber microservice points to the database specified in the .env file. To install, first copy
-  the .env template, update the values to point to the proper <server> database, then run:
-  ```
-  cd admin/
-  yarn install
-  cd ..
-  ```
-
-- Running
-  This will start the Lumber microserver and allow you to hit the ForestAdmin cloud app to access the Admin Console.
-  ```
-  yarn admin
-  ```
 
 ### Development
 - Installation
