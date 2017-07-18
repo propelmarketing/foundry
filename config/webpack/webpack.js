@@ -23,8 +23,7 @@ module.exports = {
       configuration: path.join(root, 'config'),
       server: path.join(root, 'src/server'),
       views: path.join(root, 'src/views'),
-      static: path.join(root, 'static'),
-      'pg-native': path.join(root, 'aliases/pg-native.js')
+      static: path.join(root, 'static')
     },
     aliasFields: ['browser'],
     extensions: ['.json', '.js', '.min.js']

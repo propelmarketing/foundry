@@ -16,7 +16,7 @@ dependencies:
     - yarn install
 test:
   override:
-    - yarn test:coverage
+    - yarn test
     - cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
     - source ./scripts/selenium.sh
 deployment:

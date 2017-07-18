@@ -4,7 +4,6 @@
   "description": "ThriveHive Microservice",
   "main": "index.js",
   "scripts": {
-    "admin": "cd admin && npm start",
     "build": "yarn build-pre && webpack --colors --progress --config \"./config/webpack/webpack.js\"",
     "build-dev": "yarn build-pre && webpack --colors --progress --config \"./config/webpack/webpack.dev.js\"",
     "build-pre": "yarn install && yarn run clean",
@@ -12,12 +11,10 @@
     "clean": "rm -rf dist/",
     "selenium": "echo 'Yay selenium!'",
     "start": "pm2 startOrRestart process.json",
-    "test": "./node_modules/.bin/cross-env NODE_ENV=test node --inspect ./node_modules/.bin/mocha-webpack",
-    "test:coverage": "yarn cross-env NODE_ENV=test yarn nyc yarn mocha-webpack",
-    "test:windows": "yarn cross-env NODE_ENV=test yarn mocha-webpack",
-    "watch": "concurrently --kill-other --raw \"yarn build-watch\" \"pm2 startOrRestart process.dev.json\"",
-    "watch:log": "concurrently --kill-other --raw \"yarn build-watch\" \"pm2 logs <server> --lines 0 startOrRestart process.dev.json\"",
-    "build:watch": "yarn build && yarn watch"
+    "test": "NODE_ENV=test node --inspect ./node_modules/.bin/nyc node ./node_modules/.bin/mocha-webpack",
+    "watch": "concurrently --kill-other \"yarn build-watch\" \"pm2 startOrRestart process.dev.json\"",
+    "eslint": "./node_modules/eslint/bin/eslint.js src/",
+    "flow": "./node_modules/flow-bin/cli.js"
   },
   "repository": {
     "type": "git",
@@ -47,6 +44,7 @@
     "ejs": "^2.5.6",
     "express": "^4.14.0",
     "newrelic": "^1.39.1",
+    "pm2": "^2.5.0",
     "safe-json-stringify": "^1.0.4",
     "swagger": "^0.7.5",
     "swagger-express-middleware": "^1.0.0-alpha.12",
@@ -87,7 +85,6 @@
     "mocha": "^3.2.0",
     "mocha-webpack": "^0.7.0",
     "nyc": "^11.0.2",
-    "pm2": "^2.5.0",
     "sinon": "^2.3.2",
     "sinon-chai": "^2.8.0",
     "source-map-support": "^0.4.15",
