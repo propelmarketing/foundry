@@ -1,0 +1,29 @@
+version: "3.2"
+services:
+  <server>:
+    image: "<server>-$NODE_ENV"
+    container_name: $CONTAINER_NAME
+    privileged: true
+    network_mode: "bridge"
+    build:
+      context: ../../
+      dockerfile: config/docker/Dockerfile.prod
+      args:
+        - APPLICATION=<server>
+        - AWS_ACCESS_KEY_ID
+        - AWS_SECRET_ACCESS_KEY
+        - CONTAINER_NAME
+        - DEVELOPER
+        - NODE_ENV
+    environment:
+      - APPLICATION=${APPLICATION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - CONTAINER_NAME=${CONTAINER_NAME}
+      - DEVELOPER=${DEVELOPER}
+      - NODE_ENV=${NODE_ENV}
+    ports:
+      - "3000: 3000"  # HTTP
+      - "3001: 3001"  # Container health gui
+      - "6379: 6379"  # Expose port mapping for redis
+      - "9443: 9443"  # HTTPS
