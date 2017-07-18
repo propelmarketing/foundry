@@ -31,10 +31,6 @@
       "templateEngine": "ejs",
       "views": "src/views"
     },
-    "agencyBlacklist": [
-      "localhost",
-      "127.0.0.1"
-    ],
     "ssl": {
       "key": "",
       "cert": "",
@@ -49,12 +45,6 @@
         "mixpanel": "0093b3c1e20f74f142fd7445c049f5b3"
       }
     }
-  },
-  "sendgrid": {
-    "apiKey": "",
-    "defaultProtocol": "http",
-    "sendToDebugAddress": true,
-    "mailDebugAddress": "qa-emails@thrivehive.com"
   },
   "swagger": {
     "fittingsDirs": [ "src/server/fittings", "node_modules" ],
