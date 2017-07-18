@@ -21,15 +21,6 @@ import TrackingMiddleware from 'server/middleware/tracking';
 import Logger from 'server/utils/logger';
 import router from 'server/router';
 
-// Enable Newrelic Reporting if the server is in a production environment
-let newrelic: Object | null = null;
-if (process.env.NODE_ENV === 'production') {
-  newrelic = require('newrelic');
-}
-
-// Allow config mutations
-process.env.ALLOW_CONFIG_MUTATIONS = true;
-
 /**
  * [app description]
  * @type {[type]}
@@ -160,7 +151,7 @@ export default class Server {
     staticMiddleware.mount(this.app);
 
     // BEGIN CUSTOM TH MIDDLEWARE
-    const trackingMiddleware = new TrackingMiddleware(this.config, this.logger, newrelic);
+    const trackingMiddleware = new TrackingMiddleware(this.config, this.logger, global.newrelic);
     trackingMiddleware.mount(this.app);
     // END CUSTOM TH MIDDLEWARE
   }
