@@ -24,8 +24,9 @@ export default class StaticMiddleware extends AbstractMiddleware {
       this.logger.debug(`Set view engine to '${assetsConfig.get('templateEngine')}'`);
     }
 
-      // Configure express static & sessions
-    app.use(express.static(assetsConfig.get('staticRoot')));
+
+    // Configure express static & sessions
+    app.use(`/${assetsConfig.get('staticRoot')}`, express.static(assetsConfig.get('staticRoot')));
     if (process.env.__DEV__) {
       this.logger.debug(`Set static root location to '${assetsConfig.get('staticRoot')}'`);
     }

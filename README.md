@@ -1,8 +1,7 @@
-Server Name
+<server>
 ============
 
 ## Description
-
 ## Architecture
 ### Providers
 ### Database
@@ -10,20 +9,8 @@ Server Name
 ### Server
 
 ## Deployment
-### Admin Console
-- Installation
-  ```
-  cd admin/
-  yarn install
-  cd ..
-  ./node_modules/.bin/lumber generate
-  ```
 
-- Running
-  This will start the Lumber microserver and allow you to hit the ForestAdmin cloud app to access the Admin Console
-  ```
-  npm run admin
-  ```
+<b>IMPORTANT:</b> <server> <em>requires</em> the use of yarnpkg (https://yarnpkg.com/lang/en/docs/install/)
 
 ### Development
 - Installation
@@ -32,26 +19,31 @@ Server Name
   ```
 
 - Running
-  This will build and run the server in watch mode
-  TODO update this flow with watch ability
+  This will build and run the server in watch mode.
   ```
-  npm run build-dev
-  npm start
+  yarn watch
   ```
 
+  You may also build a developmental image (non-watch) using:
+  ```
+  yarn build-dev
+  ```
+  This will build a debug image to the dist/ folder.
+
+### QA
+
 ### Production
+- Prereqs:
+
+  The target server has been properly configured & initialized.
+
 - Installation & Build
   ```
   yarn install production
-  npm build
   ```
 
-- Running:
-  To run the server in any mode other than 'developer', either set NODE_ENV manually
-  locally or globally prior to executing the following command:
-  ```
-  npm start
-  ```
+- Running
+  Do not run locally
 
-### Docker
-  TODO
+- Deployment
+  CircleCI deploys production images to AWS. See circle.yml for more details.

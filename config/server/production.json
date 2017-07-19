@@ -1,0 +1,34 @@
+{
+  "loggers": {
+    "handlers": [
+      {
+        "name": "root",
+        "level": "info",
+        "stream": "cloudwatch"
+      },
+      {
+        "name": "auth",
+        "level": "info",
+        "stream": "cloudwatch"
+      },
+      {
+        "name": "db",
+        "level": "info",
+        "stream": "cloudwatch"
+      }
+    ],
+    "streams": {
+      "cloudwatch": {
+        "logGroupName": "<server>",
+        "logStreamName": "<server>",
+        "cloudWatchLogsOptions": {
+          "sslEnabled": true,
+          "region": "us-east-1"
+        }
+      }
+    }
+  },
+  "server": {
+    "hostname": "0.0.0.0"
+  }
+}

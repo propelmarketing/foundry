@@ -22,8 +22,8 @@ module.exports = {
     alias: {
       configuration: path.join(root, 'config'),
       server: path.join(root, 'src/server'),
-      static: path.join(root, 'static'),
-      'pg-native': path.join(root, 'aliases/pg-native.js')
+      views: path.join(root, 'src/views'),
+      static: path.join(root, 'static')
     },
     aliasFields: ['browser'],
     extensions: ['.json', '.js', '.min.js']
@@ -31,7 +31,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.html$/,
+        test: /\.(html|ejs)$/,
         use: 'html-loader'
       },
       {
@@ -54,20 +54,23 @@ module.exports = {
         test: /\.json$/,
         loader: 'json-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.y(a)?ml$/,
+        loader: 'yml-loader',
+        exclude: /node_modules/
       }
     ],
     noParse: /\.min\.js/
   },
   externals: [nodeExternals()],
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"',
-        __CLIENT__: true,
-        __SERVER__: false,
-        __PRODUCTION__: true,
-        __DEV__: false
-      },
+    new webpack.EnvironmentPlugin({
+      DEBUG: false,
+      __CLIENT__: false,
+      __SERVER__: true,
+      __PRODUCTION__: false,
+      __DEV__: true
     })
   ],
   output: {

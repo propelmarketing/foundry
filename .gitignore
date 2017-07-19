@@ -10,9 +10,11 @@ pids
 dist/**
 .tmp
 .idea
+config/local.json
 
 # Coverage directory used by tools like istanbul
 coverage
+.nyc_output
 
 # node-waf configuration
 .lock-wscript
@@ -28,3 +30,6 @@ node_modules
 
 # Optional REPL history
 .node_repl_history
+
+.env
+CodeDeploy.pem

@@ -3,6 +3,7 @@
 <PROJECT_ROOT>/static/.*
 <PROJECT_ROOT>/dist/.*
 <PROJECT_ROOT>/config/.*
+<PROJECT_ROOT>/node_modules/config-chain/test/broken.json
 
 
 [include]
@@ -16,3 +17,6 @@ unsafe.enable_getters_and_setters=true
 
 module.name_mapper='^server\/\(.*\)$' -> '<PROJECT_ROOT>/src/server/\1'
 module.name_mapper='^test\/\(.*\)$' -> '<PROJECT_ROOT>/test/\1'
+module.name_mapper='^views\/\(.*\)$' -> '<PROJECT_ROOT>/src/views/\1'
+module.name_mapper='^configuration\/\(.*\)$' -> '<PROJECT_ROOT>/config/\1'
+module.name_mapper='.*\.\(ejs\|json\)$' -> '<PROJECT_ROOT>/flow-resolver.js'

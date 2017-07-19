@@ -2,26 +2,32 @@
 
 import Logger from 'server/utils/logger';
 
-const logger = Logger.get('auth');
+const LOGGER = Logger.get('auth');
 
 /**
  *
  */
 export default class Exception extends Error {
 
+  category: string;
   code: number;
   status: number;
+  extra: any;
 
   constructor(payload: string | Object, code: number = -1, status: number = 500) {
+
     if (typeof payload !== 'object') {
       payload = {
-        message: payload,
+        category: "N/A",
         code,
+        message: payload,
         status
       };
     }
-    super(`${payload.message}${payload.extra ? `. ${payload.extra}` : ''}`);
+    super();
+    this.category = payload.category;
     this.code = payload.code;
+    this.message = `${payload.message}${payload.extra ? `. ${payload.extra}` : ''}`;
     this.status = payload.status;
   }
 }
@@ -33,10 +39,10 @@ export default class Exception extends Error {
  * @return {[type]}        [description]
  */
 const handleAuthError = function(e: any, done: Function): void {
-  logger.error(e);
+  LOGGER.error(e);
   if ('status' in e && (e.status === 401 || e.status === 403)) {
     return done(null, false, e);
   }
   return done(e);
-}
+};
 export { handleAuthError };

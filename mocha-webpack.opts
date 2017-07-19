@@ -1,8 +1,11 @@
 --colors true
 --recursive true
 --inline-diffs true
---include babel-polyfill
+--require babel-polyfill/lib/index
 --require source-map-support/register
+--require test/init
 --webpack-config config/webpack/webpack.test.js
+--timeout 30000
+--check-leaks true
 
-test/**/*.spec.js
+(test/**/*.spec.js|src/server/**/*.js)
