@@ -9,7 +9,7 @@ services:
       context: ../../
       dockerfile: config/docker/Dockerfile.prod
       args:
-        - APPLICATION=<server>
+        - APPLICATION
         - AWS_ACCESS_KEY_ID
         - AWS_SECRET_ACCESS_KEY
         - CONTAINER_NAME
