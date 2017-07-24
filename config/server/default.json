@@ -27,6 +27,10 @@
       "templateEngine": "ejs",
       "views": "src/views"
     },
+    "agencyBlacklist": [
+      "localhost",
+      "127.0.0.1"
+    ],
     "ssl": {
       "key": "",
       "cert": "",
