@@ -26,8 +26,7 @@
   If the above command succeeds, then Foundry's master branch will attempt to merge into your repository's
   current working branch. Fix any merge conflicts that result.
 
-  You will also need to replace any instances of `<server>` that appear as they are placeholders for your
-  project's actual name. Mainly the `package.json` in your project's root directory needs the "name" property to be changed or else your project will break.
+  You will also need to replace any instances of `<server>` that appear as they are placeholders for your project's actual name. Mainly the `package.json` in your project's root directory needs the "name" property to be changed or else your project will break.
 
 - Installation
 
