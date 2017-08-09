@@ -5,16 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "yarn build-pre && webpack --colors --progress --config \"./config/webpack/webpack.js\"",
-    "build-dev": "yarn build-pre && webpack --colors --progress --config \"./config/webpack/webpack.dev.js\"",
     "build-pre": "yarn install && yarn run clean",
-    "build-watch": "yarn build-pre && webpack --colors --progress --config \"./config/webpack/webpack.dev.js\" --watch",
+    "build-watch": "yarn build-pre && yarn run build -- --watch",
     "clean": "rm -rf dist/",
-    "selenium": "echo 'Yay selenium!'",
     "start": "pm2 startOrRestart process.json",
     "test": "NODE_ENV=test node --inspect ./node_modules/.bin/nyc node ./node_modules/.bin/mocha-webpack",
-    "watch": "concurrently --kill-other \"yarn build-watch\" \"pm2 startOrRestart process.dev.json\"",
-    "eslint": "./node_modules/eslint/bin/eslint.js src/",
-    "flow": "./node_modules/flow-bin/cli.js"
+    "watch": "concurrently --kill-other \"yarn build-watch\" \"pm2 startOrRestart process.dev.json\""
   },
   "repository": {
     "type": "git",
@@ -79,6 +75,7 @@
     "faker": "^3.1.0",
     "file-loader": "^0.9.0",
     "flow-bin": "^0.37.4",
+    "flow-webpack-plugin": "^1.1.0",
     "html-loader": "^0.4.4",
     "json-loader": "^0.5.4",
     "less": "^2.7.1",

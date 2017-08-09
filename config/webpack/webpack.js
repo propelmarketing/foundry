@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const FlowWebpackPlugin = require('flow-webpack-plugin');
 
 // This is not particularly robust...
 const root = process.cwd();
@@ -63,15 +64,9 @@ module.exports = {
     ],
     noParse: /\.min\.js/
   },
-  externals: [nodeExternals()],
+  externals: [ nodeExternals() ],
   plugins: [
-    new webpack.EnvironmentPlugin({
-      DEBUG: false,
-      __CLIENT__: false,
-      __SERVER__: true,
-      __PRODUCTION__: false,
-      __DEV__: true
-    })
+    new FlowWebpackPlugin()
   ],
   output: {
     chunkFilename: '[name].[id].js',
