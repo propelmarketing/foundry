@@ -104,15 +104,9 @@ const routerCompiler = {
       ],
       noParse: /\.min\.js/
     },
-    externals: [nodeExternals()],
+    externals: [ nodeExternals() ],
     plugins: [
-      new webpack.EnvironmentPlugin({
-        DEBUG: false,
-        __CLIENT__: false,
-        __SERVER__: true,
-        __PRODUCTION__: false,
-        __DEV__: true
-      })
+      new FlowWebpackPlugin()
     ],
     output: {
       filename: 'router.js',
