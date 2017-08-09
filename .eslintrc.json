@@ -18,37 +18,30 @@
   },
   "parser": "babel-eslint",
   "parserOptions": {
-    "ecmaVersion": 7
+    "ecmaVersion": 8
   },
   "plugins": [
     "flowtype"
   ],
   "rules": {
-    "arrow-body-style": [
-      "error",
-      "always"
-    ],
-    "class-methods-use-this": 0,
-    "comma-dangle": 0,
-    "func-names": 0,
-    "global-require": 0,
-    "import/extensions": 0,
-    "import/no-dynamic-require": 0,
-    "import/no-extraneous-dependencies": 0,
-    "import/prefer-default-export": 0,
-    "linebreak-style": 0,
-    "max-len": [
-      "error",
-      120,
-      2
-    ],
-    "no-multi-str": 0,
-    "no-param-reassign": [2, { "props": true, "ignorePropertyModificationsFor": ["request", "response"] }],
-    "no-plusplus": 0,
+    "arrow-body-style": [ "error", "always" ],
+    "comma-dangle": [ "error", "never" ],
+    "func-names": [ "error", "as-needed" ],
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "warn",
+    "linebreak-style": "warn",
+    "max-len": [ "error", 120, 2 ],
+    "no-param-reassign": "error",
+    "no-plusplus": [ "error", { "allowForLoopAfterthoughts": true } ],
     "no-restricted-syntax": 0,
-    "no-underscore-dangle": [2, { "allow": ["__DEV__"] }],
-    "prefer-arrow-callback": 0,
-    "strict": 0
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": [ "const", "let", "var" ], "next": "*" },
+      { "blankLine": "any",    "prev": [ "const", "let", "var" ], "next": [ "const", "let", "var" ] }
+    ],
+    "prefer-arrow-callback": [ "error", { "allowNamedFunctions": true } ],
+    "strict": "off"
   },
   "settings": {
     "import/resolver": {

@@ -24,6 +24,7 @@
         "useBuiltIns": true
       }
     ],
+    "flow",
     "stage-0",
   ],
   "sourceMaps": true,
