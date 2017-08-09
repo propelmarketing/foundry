@@ -7,7 +7,7 @@ const FlowWebpackPlugin = require('flow-webpack-plugin');
 const root = process.cwd();
 const entry = 'src/server.js';
 
-module.exports = {
+const appCompiler = {
   target: 'node',
   cache: false,
   devtool: 'source-map',
@@ -76,3 +76,49 @@ module.exports = {
     path: path.join(root, 'dist/')
   }
 };
+
+const routerCompiler = {
+    target: 'node',
+    cache: false,
+    devtool: 'source-map',
+    entry: [
+      "babel-polyfill",
+      path.join(root, 'src/server/router')
+    ],
+    resolve: {
+      modules: [
+        path.join(root, 'node_modules')
+      ],
+      alias: {
+        server: path.join(root, 'src/server')
+      },
+      extensions: ['.json', '.js', '.min.js']
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          loader: 'babel-loader',
+          exclude: /node_modules/
+        }
+      ],
+      noParse: /\.min\.js/
+    },
+    externals: [nodeExternals()],
+    plugins: [
+      new webpack.EnvironmentPlugin({
+        DEBUG: false,
+        __CLIENT__: false,
+        __SERVER__: true,
+        __PRODUCTION__: false,
+        __DEV__: true
+      })
+    ],
+    output: {
+      filename: 'router.js',
+      libraryTarget: "commonjs2",
+      path: path.join(root, 'dist/fittings')
+    }
+};
+
+module.exports = [ appCompiler, routerCompiler ];
