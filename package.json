@@ -34,7 +34,6 @@
     "bunyan-cloudwatch": "^2.2.0",
     "bunyan-newrelic-stream": "^1.2.0",
     "codacy-coverage": "^2.0.2",
-    "concurrently": "^3.4.0",
     "config": "^1.24.0",
     "connect-flash-plus": "^0.2.1",
     "ejs": "^2.5.6",
@@ -43,9 +42,7 @@
     "pm2": "^2.5.0",
     "safe-json-stringify": "^1.0.4",
     "swagger": "^0.7.5",
-    "swagger-express-middleware": "^1.0.0-alpha.12",
-    "uuid": "^3.1.0",
-    "validator": "^7.0.0"
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
