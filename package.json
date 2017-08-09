@@ -4,13 +4,11 @@
   "description": "ThriveHive Microservice",
   "main": "index.js",
   "scripts": {
-    "build": "yarn build-pre && webpack --colors --progress --config \"./config/webpack/webpack.js\"",
-    "build-pre": "yarn install && yarn run clean",
-    "build-watch": "yarn build-pre && yarn run build -- --watch",
+    "build": "yarn && yarn run clean && webpack --colors --progress --config \"./config/webpack/webpack.js\"",
     "clean": "rm -rf dist/",
     "start": "pm2 startOrRestart process.json",
     "test": "NODE_ENV=test node --inspect ./node_modules/.bin/nyc node ./node_modules/.bin/mocha-webpack",
-    "watch": "concurrently --kill-other \"yarn build-watch\" \"pm2 startOrRestart process.dev.json\""
+    "watch": "concurrently --kill-other \"yarn run build -- --watch\" \"pm2 startOrRestart process.dev.json\""
   },
   "repository": {
     "type": "git",
@@ -58,6 +56,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
+    "concurrently": "^3.4.0",
     "cross-env": "^5.0.0",
     "css-loader": "^0.26.1",
     "debug": "^2.4.5",
