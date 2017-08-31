@@ -38,6 +38,7 @@
     "newrelic": "^1.39.1",
     "pm2": "^2.5.0",
     "safe-json-stringify": "^1.0.4",
+    "stack-trace": "^0.0.10",
     "swagger": "^0.7.5",
     "uuid": "^3.1.0"
   },
