@@ -1,5 +1,5 @@
 {
-  "name": "<server>",
+  "name": "foundry",
   "version": "1.0.0",
   "description": "ThriveHive Microservice",
   "main": "index.js",
