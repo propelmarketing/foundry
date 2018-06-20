@@ -8,8 +8,7 @@ jobs:
     environment:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-      PATH: ${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:${CIRCLECI_PKG_DIR}/.nvm:${CIRCLECI_PKG_DIR}/nodejs/v8.1.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-      #run: echo '${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:${CIRCLECI_PKG_DIR}/.nvm:${CIRCLECI_PKG_DIR}/nodejs/v8.6.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin' >> $BASH_ENV
+      PATH: ${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:${CIRCLECI_PKG_DIR}/.nvm:${CIRCLECI_PKG_DIR}/nodejs/v8.6.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
     docker:
     - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
@@ -18,7 +17,7 @@ jobs:
     steps:
     - checkout
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-    - run: nvm install 8.1.0 && nvm alias default 8.1.0
+    - run: nvm install 8.6.0 && nvm alias default 8.6.0
     - restore_cache:
         keys:
         - v1-dep-{{ .Branch }}-
