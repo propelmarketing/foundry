@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/propelmarketing/foundry
+    parallelism: 2
+    shell: /bin/bash --login
+
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+      run: echo '${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:${CIRCLECI_PKG_DIR}/.nvm:${CIRCLECI_PKG_DIR}/nodejs/v8.6.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin' >> $BASH_ENV
+
+    docker:
+      - image: circleci/node:7.10
+        command: /sbin/init
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: yarn test
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
