@@ -18,7 +18,7 @@ jobs:
     - checkout
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
     - run: nvm install 8.6.0 && nvm alias default 8.6.0
-    - run: grep -rl \<server\> . | xargs sed -i "" "s/\<server\>/${CIRCLE_PROJECT_REPONAME}/"
+    - run: grep -rl \<server\> . | xargs sed -i s/\<server\>/${CIRCLE_PROJECT_REPONAME}/
     - run: yarn build
     - run: yarn test
     - run: cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
@@ -34,7 +34,7 @@ jobs:
     - store_artifacts:
         path: /tmp/circleci-test-results
  
- deploy-qa:
+  deploy-qa:
     working_directory: ~/propelmarketing/foundry
     shell: /bin/bash --login
 
@@ -52,7 +52,7 @@ jobs:
     - run: yarn build
     #- run: source ./scripts/ec2/deploy_qa.sh
 
- deploy-prod:
+  deploy-prod:
     working_directory: ~/propelmarketing/foundry
     shell: /bin/bash --login
 
