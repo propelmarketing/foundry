@@ -18,26 +18,8 @@ jobs:
     - checkout
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
     - run: nvm install 8.6.0 && nvm alias default 8.6.0
-    - restore_cache:
-        keys:
-        - v1-dep-{{ .Branch }}-
-        - v1-dep-master-
-        - v1-dep-
-    - run: yarn install
-    - run: yarn
-    - save_cache:
-        key: v1-dep-{{ .Branch }}-{{ epoch }}
-        paths:
-        - vendor/bundle
-        - ~/virtualenvs
-        - ~/.m2
-        - ~/.ivy2
-        - ~/.bundle
-        - ~/.go_workspace
-        - ~/.gradle
-        - ~/.cache/bower
-        - ~/.cache/yarn
-        - ./node_modules
+    - run: grep -rl \<server\> . | xargs sed -i "" "s/\<server\>/${CIRCLE_PROJECT_REPONAME}/"
+    - run: yarn build
     - run: yarn test
     - run: cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
     - run: source ./scripts/selenium.sh
@@ -51,6 +33,42 @@ jobs:
         path: ./dist
     - store_artifacts:
         path: /tmp/circleci-test-results
+ 
+ deploy-qa:
+    working_directory: ~/propelmarketing/foundry
+    shell: /bin/bash --login
+
+    environment:
+      PATH: ${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+    docker:
+    - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+      command: /sbin/init
+
+    steps:
+    - checkout
+    - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
+    - run: nvm install 8.6.0 && nvm alias default 8.6.0
+    - run: yarn build
+    #- run: source ./scripts/ec2/deploy_qa.sh
+
+ deploy-prod:
+    working_directory: ~/propelmarketing/foundry
+    shell: /bin/bash --login
+
+    environment:
+      PATH: ${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+    docker:
+    - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+      command: /sbin/init
+
+    steps:
+    - checkout
+    - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
+    - run: nvm install 8.6.0 && nvm alias default 8.6.0
+    - run: yarn build
+    #- run: source ./scripts/ec2/deploy_prod.sh
 
 workflows:
   version: 2
@@ -62,3 +80,19 @@ workflows:
               only: /.*/
             tags:
               only: /.*/
+      - deploy-qa:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*QA/
+      - deploy-prod:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
