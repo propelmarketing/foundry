@@ -7,6 +7,9 @@ jobs:
         type: string
     machine: true
     steps:
+      - run:
+          name: Hello
+          command: echo "Hello"
       - when:
           condition: <<parameters.runit>>
           steps:
