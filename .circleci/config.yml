@@ -1,59 +1,58 @@
+---
 version: 2.1
 jobs:
-  test:
+  deploy:
+    docker:
+      -
+        image: mastermindg/node-10-slim-phantom
+        user: node
+    shell: "/bin/bash --login"
+    steps:
+      - checkout
+      -
+        run:
+          command: "echo \"Deploying it $runit\""
+          name: "Mock Deploy"
     working_directory: ~/propelmarketing/foundry
-    shell: /bin/bash --login
-
+  moretests:
+    docker:
+      -
+        image: mastermindg/node-10-slim-phantom
+        user: node
+    shell: "/bin/bash --login"
+    steps:
+      - checkout
+      -
+        run:
+          command: "echo \"Testing before deploy\""
+          name: "Mock Test"
+    working_directory: ~/propelmarketing/foundry
+  test:
+    docker:
+      -
+        image: mastermindg/node-10-slim-phantom
+        user: node
     environment:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-      PATH: ${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-
-    docker:
-    - image: mastermindg/node-10-slim-phantom
-      user: node
-
+      PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    shell: "/bin/bash --login"
     steps:
-    - checkout
-    - run:
-        name: Mock Test
-        command: echo "Just testing this out"
-  deploy:
+      - checkout
+      -
+        run:
+          command: "echo \"Just testing this out\""
+          name: "Mock Test"
     working_directory: ~/propelmarketing/foundry
-    shell: /bin/bash --login
-
-    docker:
-    - image: mastermindg/node-10-slim-phantom
-      user: node
-
-    steps:
-    - checkout
-    - run:
-        name: Mock Deploy
-        command: echo "Deploying it"
-  moretests:
-    working_directory: ~/propelmarketing/foundry
-    shell: /bin/bash --login
-
-    docker:
-    - image: mastermindg/node-10-slim-phantom
-      user: node
-
-    steps:
-    - checkout
-    - run:
-        name: Mock Test
-        command: echo "Testing before deploy"
-        command: echo "Was the build param passed: $runit"
 workflows:
   version: 2
   test:
-   jobs:
-     - test
-     - moretests:
-        filters:
-          branches:
-            ignore: /.*/
-     - deploy:
-        requires:
-          - moretests
+    jobs:
+      - test
+      -
+        deploy:
+          filters:
+            branches:
+              ignore: /.*/
+          requires:
+            - test
