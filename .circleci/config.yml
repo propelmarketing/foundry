@@ -1,5 +1,5 @@
 ---
-version: 2.1
+version: 2
 jobs:
   deploy:
     docker:
@@ -45,12 +45,10 @@ jobs:
           name: "Mock Test"
     working_directory: ~/propelmarketing/foundry
 workflows:
-  version: 2
   test:
     jobs:
       - test
-      -
-        deploy:
+      - deploy:
           filters:
             branches:
               ignore: /.*/
