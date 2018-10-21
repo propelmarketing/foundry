@@ -36,9 +36,6 @@ workflows:
           context: org-stage
           requires:
             - unit_test
-          filters:
-            branches:
-              ignore: /.*/
       - system_test:
           context: org-stage
           requires:
