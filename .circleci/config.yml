@@ -5,7 +5,6 @@ jobs: # conditional steps may also be defined in `commands:`
     parameters:
       custom_checkout:
         type: string
-        default: \"\"
     machine: true
     steps:
       - when:
@@ -19,6 +18,4 @@ jobs: # conditional steps may also be defined in `commands:`
 workflows:
   build-test-deploy:
     jobs:
-      - job_with_optional_custom_checkout:
-          custom_checkout: \"any non-empty string is truthy\"
       - job_with_optional_custom_checkout
