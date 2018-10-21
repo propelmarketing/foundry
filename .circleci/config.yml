@@ -30,11 +30,13 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
-      - unit_test
-      - integration_test
-      - system_test
-      - acceptance_test
+      - unit_test:
+          context: org-qa
+      - integration_test:
+          context: org-stage
+      - system_test:
+          context: org-stage
+      - acceptance_test:
+          context: org-stage
       - production:
-          requires:
-            - unit_test
           context: org-prod
