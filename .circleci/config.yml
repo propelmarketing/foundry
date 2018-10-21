@@ -1,13 +1,37 @@
 version: 2
 
 jobs:
-  another_job:
+  unit_test:
     machine: true
     steps:
       - checkout
-      - run: source .circleci/test.sh
+      - run: source .circleci/unit.sh
+  integration_test:
+    machine: true
+    steps:
+      - checkout
+      - run: source .circleci/integration.sh
+  system_test:
+    machine: true
+    steps:
+      - checkout
+      - run: source .circleci/system.sh
+  acceptance_test:
+    machine: true
+    steps:
+      - checkout
+      - run: source .circleci/acceptance.sh
+  production:
+    machine: true
+    steps:
+      - checkout
+      - run: source .circleci/production.sh
 workflows:
   version: 2
   build-test-deploy:
     jobs:
-      - another_job
+      - unit_test
+      - integration_test
+      - system_test
+      - acceptance_test
+      - production
