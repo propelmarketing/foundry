@@ -31,9 +31,10 @@ workflows:
   build-test-deploy:
     jobs:
       - unit_test
-      - integration_test:
-          require:
-            - unit_test
+      - integration_test
       - system_test
       - acceptance_test
       - production
+          requires:
+            - unit_test
+          context: org-prod
