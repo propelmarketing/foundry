@@ -34,7 +34,7 @@ workflows:
       - integration_test
       - system_test
       - acceptance_test
-      - production
+      - production:
           requires:
             - unit_test
           context: org-prod
