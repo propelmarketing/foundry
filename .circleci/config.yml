@@ -34,9 +34,23 @@ workflows:
           context: org-qa
       - integration_test:
           context: org-stage
+          require:
+            - unit_test
       - system_test:
           context: org-stage
+          require:
+            - unit_test
+            - integration_test
       - acceptance_test:
           context: org-stage
+          require:
+            - unit_test
+            - integration_test
+            - system_test
       - production:
           context: org-prod
+          require:
+            - unit_test
+            - integration_test
+            - system_test
+            - acceptance_test
