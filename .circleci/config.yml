@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  test:
+    working_directory: ~/propelmarketing/foundry
+    shell: /bin/bash --login
+
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+      PATH: ${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+    docker:
+    - image: mastermindg/node-10-slim-phantom
+      user: node
+
+    steps:
+    - checkout
+    - run:
+        name: Mock Test
+        command: echo "Just testing this out"
+workflows:
+  version: 2
+  test:
+   jobs:
+     - test
