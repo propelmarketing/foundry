@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   test:
     working_directory: ~/propelmarketing/foundry
@@ -44,19 +44,16 @@ jobs:
     - run:
         name: Mock Test
         command: echo "Testing before deploy"
+        command: echo "Was the build param passed: $runit"
 workflows:
   version: 2
   test:
    jobs:
      - test
-  api-kick-off:
-   jobs:
-    - moretests:
+     - moretests:
         filters:
           branches:
             ignore: /.*/
-          tags:
-            only: /^v[0-9]+(\.[0-9]+)*/
-    - deploy:
+     - deploy:
         requires:
           - moretests
