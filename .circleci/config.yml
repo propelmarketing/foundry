@@ -15,7 +15,9 @@ jobs:
 
     steps:
     - checkout
-    - echo "Just testing this out"
+    - run:
+        name: Mock Test
+        command: echo "Just testing this out"
 workflows:
   version: 2
   test:
