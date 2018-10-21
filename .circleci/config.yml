@@ -45,6 +45,7 @@ jobs:
           name: "Mock Test"
     working_directory: ~/propelmarketing/foundry
 workflows:
+  version: 2
   test:
     jobs:
       - test
