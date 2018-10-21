@@ -36,17 +36,26 @@ workflows:
           context: org-stage
           requires:
             - unit_test
+          filters:
+            branches:
+              ignore: /.*/
       - system_test:
           context: org-stage
           requires:
             - unit_test
             - integration_test
+          filters:
+            branches:
+              ignore: /.*/
       - acceptance_test:
           context: org-stage
           requires:
             - unit_test
             - integration_test
             - system_test
+          filters:
+            branches:
+              ignore: /.*/
       - production:
           context: org-prod
           requires:
@@ -54,3 +63,6 @@ workflows:
             - integration_test
             - system_test
             - acceptance_test
+          filters:
+            branches:
+              ignore: /.*/
