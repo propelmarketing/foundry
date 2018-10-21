@@ -1,15 +1,21 @@
 version: 2.1
 
 jobs:
-  optional_job:
+  optional:
+    parameters:
+      runit:
+        type: string
     machine: true
     steps:
+      - run:
+          name: Hello
+          command: echo "Hello"
       - when:
           condition: <<parameters.runit>>
           steps:
             - run: echo \"runit\"
 workflows:
-  version: 2.1
-  build-test-deploy:
+  version: 2
+  testthis:
     jobs:
-      - optional_job
+      - optional
