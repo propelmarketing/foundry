@@ -1,7 +1,7 @@
 version: 2
 jobs:
   test:
-    working_directory: ~/propelmarketing/zergling
+    working_directory: ~/propelmarketing/foundry
     shell: /bin/bash --login
 
     environment:
@@ -15,11 +15,7 @@ jobs:
 
     steps:
     - checkout
-    - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-    - run: yarn install
-    - run: yarn test
-    - run: cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
-    - run: source ./scripts/selenium.sh
+    - echo "Just testing this out"
 workflows:
   version: 2
   test:
