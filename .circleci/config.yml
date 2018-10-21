@@ -4,6 +4,7 @@ jobs:
   another_job:
     machine: true
     steps:
+      - checkout
       - run: source .circleci/test.sh
 workflows:
   version: 2
