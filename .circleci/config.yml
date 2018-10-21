@@ -15,7 +15,7 @@ jobs: # conditional steps may also be defined in `commands:`
       - unless:
           condition: <<parameters.custom_checkout>>
           steps:
-            - run: echo \"the regular checkout\"
+            - checkout
 workflows:
   build-test-deploy:
     jobs:
