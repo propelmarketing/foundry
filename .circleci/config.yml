@@ -2,6 +2,9 @@ version: 2.1
 
 jobs:
   optional:
+    parameters:
+      runit:
+        type: string
     machine: true
     steps:
       - when:
