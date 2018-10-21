@@ -18,8 +18,43 @@ jobs:
     - run:
         name: Mock Test
         command: echo "Just testing this out"
+  deploy:
+    working_directory: ~/propelmarketing/foundry
+    shell: /bin/bash --login
+
+    docker:
+    - image: mastermindg/node-10-slim-phantom
+      user: node
+
+    steps:
+    - checkout
+    - run:
+        name: Mock Deploy
+        command: echo "Deploying it"
+  moretests:
+    working_directory: ~/propelmarketing/foundry
+    shell: /bin/bash --login
+
+    docker:
+    - image: mastermindg/node-10-slim-phantom
+      user: node
+
+    steps:
+    - checkout
+    - run:
+        name: Mock Test
+        command: echo "Testing before deploy"
 workflows:
   version: 2
   test:
    jobs:
      - test
+  api-kick-off:
+   jobs:
+    - moretests:
+        filters:
+          branches:
+            ignore: /.*/
+    - deploy:
+        requires:
+          - moretests
