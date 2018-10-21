@@ -1,57 +1,14 @@
----
-version: 2
+version: 2.1
+
 jobs:
-  deploy:
-    docker:
-      -
-        image: mastermindg/node-10-slim-phantom
-        user: node
-    shell: "/bin/bash --login"
+  optional_job:
+    machine: true
     steps:
-      - checkout
-      -
-        run:
-          command: "echo \"Deploying it $runit\""
-          name: "Mock Deploy"
-    working_directory: ~/propelmarketing/foundry
-  moretests:
-    docker:
-      -
-        image: mastermindg/node-10-slim-phantom
-        user: node
-    shell: "/bin/bash --login"
-    steps:
-      - checkout
-      -
-        run:
-          command: "echo \"Testing before deploy\""
-          name: "Mock Test"
-    working_directory: ~/propelmarketing/foundry
-  test:
-    docker:
-      -
-        image: mastermindg/node-10-slim-phantom
-        user: node
-    environment:
-      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
-      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-      PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-    shell: "/bin/bash --login"
-    steps:
-      - checkout
-      -
-        run:
-          command: "echo \"Just testing this out\""
-          name: "Mock Test"
-    working_directory: ~/propelmarketing/foundry
+      - when:
+          condition: <<parameters.runit>>
+          steps:
+            - run: echo \"runit\"
 workflows:
-  version: 2
-  test:
+  build-test-deploy:
     jobs:
-      - test
-      - deploy:
-          filters:
-            branches:
-              ignore: /.*/
-          requires:
-            - test
+      - optional_job
