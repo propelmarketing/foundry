@@ -1,26 +1,12 @@
-version: 2.1
+version: 2
 
-jobs: # conditional steps may also be defined in `commands:`
-  job_with_optional_custom_checkout:
-    parameters:
-      custom_checkout:
-        type: string
-    machine: true
-    steps:
-      - when:
-          condition: <<parameters.custom_checkout>>
-          steps:
-            - run: echo \"my custom checkout\"
-      - unless:
-          condition: <<parameters.custom_checkout>>
-          steps:
-            - checkout
+jobs:
   another_job:
     machine: true
     steps:
       - run: echo \"Another Job\"
 workflows:
+  version: 2
   build-test-deploy:
     jobs:
-      - job_with_optional_custom_checkout
       - another_job
