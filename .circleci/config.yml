@@ -32,6 +32,8 @@ workflows:
     jobs:
       - unit_test
       - integration_test
+          require:
+            - unit_test
       - system_test
       - acceptance_test
       - production
