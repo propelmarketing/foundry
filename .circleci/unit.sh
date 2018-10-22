@@ -1,6 +1,10 @@
 #!/bin/bash
 
-# Let's assume we're kicking off the unit tests somewhere else here:
+# Let's assume that we're running Unit tests here:
 
-echo "Sending out for unit tests...beep boop beep"
-echo "When the unit tests are done somebody sends a slack message to Toadsworth who is turn calls the CircleCI API with $unit_passed"
+echo "Testing piece 1...passed"
+echo "Testing piece 2...passed"
+echo "Testing piece 3...passed"
+echo "Testing piece 4...passed"
+echo "Testing piece 5...passed"
+echo "Now that the unit tests have passed the integration_test job is called."

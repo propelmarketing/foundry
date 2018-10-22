@@ -4,7 +4,7 @@
 
 if [ "$system_passed" == "yep" ]; then
   echo "Sending out for acceptance tests...beep boop beep"
-  echo "When the acceptance tests are done somebody sends a slack message to Toadsworth who is turn calls the CircleCI API with $acceptance_passed"
+  echo "When the acceptance tests are done somebody sends a slack message to Toadsworth who is turn calls the CircleCI API with parameter acceptance_passed"
 else
   echo "Waiting for System tests to pass"
 fi
