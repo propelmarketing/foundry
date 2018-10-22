@@ -33,7 +33,7 @@ workflows:
       - unit_test:
           context: org-qa
       - integration_test:
-          context: org-stage
+          context: org-qa
           requires:
             - unit_test
       - system_test:
